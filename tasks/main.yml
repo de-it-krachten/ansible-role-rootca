@@ -1,0 +1,17 @@
+---
+
+- name: Make sure the folder exists
+  file:
+    path: "{{ ca_directory }}"
+    state: directory
+
+- name: Distribute all root CA certificates
+  copy:
+    src: "{{ item }}.pem"
+    dest: "{{ ca_directory }}/{{ item }}.pem"
+  loop: "{{ ca_certificates }}"
+  register: ca_update
+
+- name: Update CA trust
+  command: "{{ ca_update_cmd }}"
+  when: ca_update.changed
