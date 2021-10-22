@@ -1,7 +1,3 @@
 ---
 
-ca_certificates:
-  - auth.solvinity.com
-  - picard-forward-proxy
-ca_directory: /etc/pki/ca-trust/source/anchors
-ca_update_cmd: update-ca-trust
+rootca_certificates: []

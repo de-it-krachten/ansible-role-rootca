@@ -1,17 +1,46 @@
 ---
 
+- name: Load variables based on OS type
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - '{{ ansible_distribution }}.yml'
+        - "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+        - '{{ ansible_os_family }}.yml'
+        - default.yml
+      paths:
+        - 'vars'
+
 - name: Make sure the folder exists
   file:
-    path: "{{ ca_directory }}"
+    path: "{{ rootca_directory }}"
     state: directory
+    owner: root
+    group: root
+    mode: "0755"
 
 - name: Distribute all root CA certificates
   copy:
     src: "{{ item }}.pem"
-    dest: "{{ ca_directory }}/{{ item }}.pem"
-  loop: "{{ ca_certificates }}"
-  register: ca_update
+    dest: "{{ rootca_directory }}/{{ item }}.{{ rootca_ext }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ rootca_certificates }}"
+  register: rootca_update1
 
-- name: Update CA trust
-  command: "{{ ca_update_cmd }}"
-  when: ca_update.changed
+- name: Append certificate to /etc/ca-certificates.conf
+  lineinfile:
+    path: /etc/ca-certificates.conf
+    line: "{{ rootca_directory | basename }}/{{ item }}.{{ rootca_ext }}"
+  loop: "{{ rootca_certificates }}"
+  register: rootca_update2
+  when: ansible_os_family == 'Debian'
+
+- name: Update CA trust  
+  command: "{{ rootca_update_cmd }}"
+  register: rootca_update3
+  changed_when: "'0 added' not in rootca_update3.stdout"
+  when: rootca_update1.changed or rootca_update2.changed  # noqa no-handler

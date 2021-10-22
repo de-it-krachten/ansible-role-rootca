@@ -1,0 +1,5 @@
+---
+
+rootca_ext: crt
+rootca_directory: /usr/share/ca-certificates/extra
+rootca_update_cmd: update-ca-certificates

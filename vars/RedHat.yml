@@ -1,0 +1,5 @@
+---
+
+rootca_ext: pem
+rootca_directory: /etc/pki/ca-trust/source/anchors
+rootca_update_cmd: update-ca-trust
