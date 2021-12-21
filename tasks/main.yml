@@ -23,8 +23,8 @@
 
 - name: Distribute all root CA certificates
   copy:
-    src: "{{ item }}.pem"
-    dest: "{{ rootca_directory }}/{{ item }}.{{ rootca_ext }}"
+    src: "{{ item }}"
+    dest: "{{ rootca_directory }}/{{ item | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
     owner: root
     group: root
     mode: "0644"
