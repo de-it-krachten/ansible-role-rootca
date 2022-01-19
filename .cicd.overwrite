@@ -1,0 +1,9 @@
+generic:
+  role_description: |
+    Provisions list of rootCA SSL certificates
+molecule:
+  converge:
+    vars:
+      rootca_certificates:
+        - tests/root1.crt
+        - tests/root2.pem

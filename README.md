@@ -13,6 +13,8 @@ Supported platforms
 
 - CentOS 7
 - CentOS 8
+- RockyLinux 8
+- AlmaLinux 8
 - Debian 10 (Buster)
 - Debian 11 (Bullseye)
 - Ubuntu 18.04 LTS
@@ -32,14 +34,12 @@ Example Playbook
 ----------------
 
 <pre><code>
-- name: Converge
+- name: sample playbook for role 'rootca'
   hosts: all
   vars:
-    rootca_certificates:
-      - tests/root1.crt
-      - tests/root2.pem
+    rootca_certificates: ['tests/root1.crt', 'tests/root2.pem']
   tasks:
-    - name: Include role 'ansible-role-rootca'
+    - name: Include role 'rootca'
       include_role:
-        name: ansible-role-rootca
+        name: rootca
 </pre></code>
