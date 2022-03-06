@@ -13,7 +13,12 @@
       paths:
         - 'vars'
 
-- name: Make sure the folder exists
+- name: Install all public CA certificates
+  package:
+    name: ca-certificates
+    state: present
+
+- name: Make sure {{ rootca_directory }} exists
   file:
     path: "{{ rootca_directory }}"
     state: directory
@@ -21,7 +26,7 @@
     group: root
     mode: "0755"
 
-- name: Distribute all root CA certificates
+- name: Distribute all root CA certificates into {{ rootca_directory }}
   copy:
     src: "{{ item }}"
     dest: "{{ rootca_directory }}/{{ item | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
@@ -34,7 +39,7 @@
 - name: Append certificate to /etc/ca-certificates.conf
   lineinfile:
     path: /etc/ca-certificates.conf
-    line: "{{ rootca_directory | basename }}/{{ item }}.{{ rootca_ext }}"
+    line: "{{ rootca_directory | basename }}/{{ item | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
   loop: "{{ rootca_certificates }}"
   register: rootca_update2
   when: ansible_os_family == 'Debian'
