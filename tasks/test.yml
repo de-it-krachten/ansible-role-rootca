@@ -6,17 +6,19 @@
       uri:
         url: "{{ rootca_test_url }}"
         validate_certs: yes
+        status_code: "{{ rootca_test_codes | default(omit) }}"
       changed_when: false
+      ignore_error: yes
       register: _rootca_test_url
 
-    - name: Failed to connect to {{ rootca_test_url }}
+    - name: Check if test failed
       debug:
         msg: Failed to connect to {{ rootca_test_url }}
-      when: _rootca_test_url.rc > 0
+      when: _rootca_test_url.failed 
 
     - name: Fail play
       fail:
         msg: Stop is requested at failure of test
-      when: rootca_test_fail|bool
+      when: rootca_test_fail|bool and _rootca_test_url.failed
 
   when: rootca_test_url is defined and rootca_test_url|length > 0
