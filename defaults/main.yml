@@ -2,3 +2,9 @@
 
 # List of root certificate files
 rootca_certificates: []
+
+# Url to be used for testing
+rootca_test_url: ''
+
+# Should we fail if the test fails?
+rootca_test_fail: true
