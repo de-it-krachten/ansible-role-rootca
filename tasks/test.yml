@@ -8,7 +8,7 @@
         validate_certs: yes
         status_code: "{{ rootca_test_codes | default(omit) }}"
       changed_when: false
-      ignore_error: yes
+      ignore_errors: yes
       register: _rootca_test_url
 
     - name: Check if test failed
