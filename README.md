@@ -22,7 +22,7 @@ Supported platforms
 - Ubuntu 20.04 LTS
 
 Note:
-<sup>1</sup> means no automated testing is performed on these platforms
+<sup>1</sup> : no automated testing is performed on these platforms
 
 Role Variables
 --------------
