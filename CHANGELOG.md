@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.2.0...v1.3.0) (2022-07-09)
+
+
+### Features
+
+* Add support for several newer platforms ([e634148](https://github.com/de-it-krachten/ansible-role-rootca/commit/e6341481d7cf2c7129914a4f89af19f02ebee917))
+
 # [1.2.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.1.0...v1.2.0) (2022-03-29)
 
 
