@@ -1,6 +1,9 @@
+---
+
 generic:
   role_description: |
     Provisions list of rootCA SSL certificates
+
 molecule:
   converge:
     vars:
