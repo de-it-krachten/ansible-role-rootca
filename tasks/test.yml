@@ -1,6 +1,7 @@
 ---
 
-- block:
+- name: Test url
+  block:
 
     - name: Try connecting to test url
       uri:
