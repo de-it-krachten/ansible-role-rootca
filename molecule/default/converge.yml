@@ -2,6 +2,7 @@
 
 - name: Converge
   hosts: all
+  become: "{{ molecule['converge']['become'] | default('yes') }}"
   vars:
     rootca_certificates: ['tests/root1.crt', 'tests/root2.pem']
   tasks:

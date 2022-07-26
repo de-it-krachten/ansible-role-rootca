@@ -15,6 +15,7 @@ Supported platforms
 - Red Hat Enterprise Linux 9<sup>1</sup>
 - CentOS 7
 - RockyLinux 8
+- RockyLinux 9
 - OracleLinux 8
 - AlmaLinux 8
 - AlmaLinux 9
@@ -85,6 +86,7 @@ rootca_update_cmd: update-ca-certificates
 <pre><code>
 - name: sample playbook for role 'rootca'
   hosts: all
+  become: "{{ molecule['converge']['become'] | default('yes') }}"
   vars:
     rootca_certificates: ['tests/root1.crt', 'tests/root2.pem']
   tasks:
