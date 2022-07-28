@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.3.0...v1.4.0) (2022-07-28)
+
+
+### Features
+
+* Implement ansible-lint v6 support ([62babf0](https://github.com/de-it-krachten/ansible-role-rootca/commit/62babf0cbadb18a5bd1aedc0189cf6d185679e22))
+
 # [1.3.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.2.0...v1.3.0) (2022-07-09)
 
 
