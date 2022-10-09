@@ -18,7 +18,7 @@
     name: ca-certificates
     state: present
 
-- name: Make sure rootca director yexists  
+- name: Make sure rootca directory exists
   ansible.builtin.file:
     path: "{{ rootca_directory }}"
     state: directory
