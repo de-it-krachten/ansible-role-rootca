@@ -6,6 +6,15 @@
 Provisions list of rootCA SSL certificates
 
 
+
+## Dependencies
+
+#### Roles
+None
+
+#### Collections
+- community.general
+
 ## Platforms
 
 Supported platforms
@@ -42,6 +51,7 @@ rootca_test_url: ''
 # Should we fail if the test fails?
 rootca_test_fail: true
 </pre></code>
+
 
 ### vars/family-RedHat.yml
 <pre><code>
@@ -91,6 +101,6 @@ rootca_update_cmd: update-ca-certificates
     rootca_certificates: ['tests/root1.crt', 'tests/root2.pem']
   tasks:
     - name: Include role 'rootca'
-      include_role:
+      ansible.builtin.include_role:
         name: rootca
 </pre></code>
