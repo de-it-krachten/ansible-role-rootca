@@ -1,4 +1,4 @@
 ---
 
 - name: Update CA trust
-  command: "{{ ca_update_cmd }}"
+  ansible.builtin.command: "{{ ca_update_cmd }}"
