@@ -1,7 +1,7 @@
 ---
 
 - name: Load variables based on OS type
-  include_vars: "{{ lookup('first_found', params) }}"
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
       files:
@@ -14,12 +14,12 @@
         - 'vars'
 
 - name: Install all public CA certificates
-  package:
+  ansible.builtin.package:
     name: ca-certificates
     state: present
 
-- name: Make sure {{ rootca_directory }} exists
-  file:
+- name: Make sure rootca directory exists
+  ansible.builtin.file:
     path: "{{ rootca_directory }}"
     state: directory
     owner: root
@@ -27,9 +27,9 @@
     mode: "0755"
 
 - name: Distribute all root CA certificates into {{ rootca_directory }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ rootca_directory }}/{{ item | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
+    dest: "{{ rootca_directory }}/{{ item | basename | regex_replace('\\.(pem | crt)$') }}.{{ rootca_ext }}"
     owner: root
     group: root
     mode: "0644"
@@ -37,15 +37,15 @@
   register: rootca_update1
 
 - name: Append certificate to /etc/ca-certificates.conf
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/ca-certificates.conf
-    line: "{{ rootca_directory | basename }}/{{ item | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
+    line: "{{ rootca_directory | basename }}/{{ item | basename | regex_replace('\\.(pem | crt)$') }}.{{ rootca_ext }}"
   loop: "{{ rootca_certificates }}"
   register: rootca_update2
   when: ansible_os_family == 'Debian'
 
-- name: Update CA trust  
-  command: "{{ rootca_update_cmd }}"
+- name: Update CA trust
+  ansible.builtin.command: "{{ rootca_update_cmd }}"
   register: rootca_update3
   changed_when: "'0 added' not in rootca_update3.stdout"
   when: rootca_update1.changed or rootca_update2.changed  # noqa no-handler
