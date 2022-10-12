@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.4.0...v1.5.0) (2022-10-12)
+
+
+### Features
+
+* Move to FQCN ([2221014](https://github.com/de-it-krachten/ansible-role-rootca/commit/22210149887d14df440b9f0a6c44d4063450e619))
+* Update CI to latest standards ([a3606d3](https://github.com/de-it-krachten/ansible-role-rootca/commit/a3606d3d3b327241108b9d4a7342d2b74bb56787))
+* Update CI to latest standards ([37b487e](https://github.com/de-it-krachten/ansible-role-rootca/commit/37b487ec4b9c41dd61c8abb2d8895e6f12079038))
+
 # [1.4.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.3.0...v1.4.0) (2022-07-28)
 
 
