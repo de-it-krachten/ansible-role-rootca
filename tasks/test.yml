@@ -1,10 +1,11 @@
 ---
 
 - name: Test url
+  when: rootca_test_url is defined and rootca_test_url | length > 0
   block:
 
     - name: Try connecting to test url
-      uri:
+      ansible.builtin.uri:
         url: "{{ rootca_test_url }}"
         validate_certs: yes
         status_code: "{{ rootca_test_codes | default(omit) }}"
@@ -13,13 +14,11 @@
       register: _rootca_test_url
 
     - name: Check if test failed
-      debug:
+      ansible.builtin.debug:
         msg: Failed to connect to {{ rootca_test_url }}
-      when: _rootca_test_url.failed 
+      when: _rootca_test_url.failed
 
     - name: Fail play
-      fail:
+      ansible.builtin.fail:
         msg: Stop is requested at failure of test
-      when: rootca_test_fail|bool and _rootca_test_url.failed
-
-  when: rootca_test_url is defined and rootca_test_url|length > 0
+      when: rootca_test_fail | bool and _rootca_test_url.failed
