@@ -4,7 +4,7 @@
   when: rootca_test_url is defined and rootca_test_url | length > 0
   block:
 
-    - name: Try connecting to test url
+    - name: Try connecting to test url  # noqa args[module]
       ansible.builtin.uri:
         url: "{{ rootca_test_url }}"
         validate_certs: yes
