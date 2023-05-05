@@ -54,6 +54,18 @@ rootca_test_fail: true
 </pre></code>
 
 
+### vars/family-Debian.yml
+<pre><code>
+# File extention to use (pem/crt)
+rootca_ext: crt
+
+# Directory to place root certificates into
+rootca_directory: /usr/share/ca-certificates/extra
+
+# Command to execute to make OS import CA certificates
+rootca_update_cmd: update-ca-certificates
+</pre></code>
+
 ### vars/family-RedHat.yml
 <pre><code>
 # File extention to use (pem/crt)
@@ -73,18 +85,6 @@ rootca_ext: crt
 
 # Directory to place root certificates into
 rootca_directory: /usr/local/share/ca-certificates
-
-# Command to execute to make OS import CA certificates
-rootca_update_cmd: update-ca-certificates
-</pre></code>
-
-### vars/family-Debian.yml
-<pre><code>
-# File extention to use (pem/crt)
-rootca_ext: crt
-
-# Directory to place root certificates into
-rootca_directory: /usr/share/ca-certificates/extra
 
 # Command to execute to make OS import CA certificates
 rootca_update_cmd: update-ca-certificates
