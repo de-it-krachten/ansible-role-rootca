@@ -2,3 +2,4 @@
 
 - name: Update CA trust
   ansible.builtin.command: "{{ ca_update_cmd }}"
+  changed_when: true

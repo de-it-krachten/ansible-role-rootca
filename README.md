@@ -26,6 +26,7 @@ Supported platforms
 - RockyLinux 8
 - RockyLinux 9
 - OracleLinux 8
+- OracleLinux 9
 - AlmaLinux 8
 - AlmaLinux 9
 - Debian 10 (Buster)
@@ -33,8 +34,8 @@ Supported platforms
 - Ubuntu 18.04 LTS
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
-- Fedora 35
 - Fedora 36
+- Fedora 37
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -52,6 +53,18 @@ rootca_test_url: ''
 rootca_test_fail: true
 </pre></code>
 
+
+### vars/family-Debian.yml
+<pre><code>
+# File extention to use (pem/crt)
+rootca_ext: crt
+
+# Directory to place root certificates into
+rootca_directory: /usr/share/ca-certificates/extra
+
+# Command to execute to make OS import CA certificates
+rootca_update_cmd: update-ca-certificates
+</pre></code>
 
 ### vars/family-RedHat.yml
 <pre><code>
@@ -77,18 +90,6 @@ rootca_directory: /usr/local/share/ca-certificates
 rootca_update_cmd: update-ca-certificates
 </pre></code>
 
-### vars/family-Debian.yml
-<pre><code>
-# File extention to use (pem/crt)
-rootca_ext: crt
-
-# Directory to place root certificates into
-rootca_directory: /usr/share/ca-certificates/extra
-
-# Command to execute to make OS import CA certificates
-rootca_update_cmd: update-ca-certificates
-</pre></code>
-
 
 
 ## Example Playbook
@@ -96,7 +97,7 @@ rootca_update_cmd: update-ca-certificates
 <pre><code>
 - name: sample playbook for role 'rootca'
   hosts: all
-  become: "{{ molecule['converge']['become'] | default('yes') }}"
+  become: "yes"
   vars:
     rootca_certificates: ['tests/root1.crt', 'tests/root2.pem']
   tasks:
