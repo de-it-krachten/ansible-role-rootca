@@ -29,13 +29,15 @@ Supported platforms
 - OracleLinux 9
 - AlmaLinux 8
 - AlmaLinux 9
-- Debian 10 (Buster)
+- SUSE Linux Enterprise 15<sup>1</sup>
+- openSUSE Leap 15
+- Debian 10 (Buster)<sup>1</sup>
 - Debian 11 (Bullseye)
-- Ubuntu 18.04 LTS
+- Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
-- Fedora 36
 - Fedora 37
+- Fedora 38
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -53,8 +55,7 @@ rootca_test_url: ''
 rootca_test_fail: true
 </pre></code>
 
-
-### vars/family-Debian.yml
+### defaults/family-Debian.yml
 <pre><code>
 # File extention to use (pem/crt)
 rootca_ext: crt
@@ -66,7 +67,19 @@ rootca_directory: /usr/share/ca-certificates/extra
 rootca_update_cmd: update-ca-certificates
 </pre></code>
 
-### vars/family-RedHat.yml
+### defaults/family-Suse.yml
+<pre><code>
+# File extention to use (pem/crt)
+rootca_ext: pem
+
+# Directory to place root certificates into
+rootca_directory: /etc/pki/trust/anchors
+
+# Command to execute to make OS import CA certificates
+rootca_update_cmd: update-ca-certificates
+</pre></code>
+
+### defaults/family-RedHat.yml
 <pre><code>
 # File extention to use (pem/crt)
 rootca_ext: pem
@@ -78,7 +91,7 @@ rootca_directory: /etc/pki/ca-trust/source/anchors
 rootca_update_cmd: update-ca-trust
 </pre></code>
 
-### vars/Alpine.yml
+### defaults/Alpine.yml
 <pre><code>
 # File extention to use (pem/crt)
 rootca_ext: crt
@@ -89,6 +102,19 @@ rootca_directory: /usr/local/share/ca-certificates
 # Command to execute to make OS import CA certificates
 rootca_update_cmd: update-ca-certificates
 </pre></code>
+
+### defaults/Rocky.yml
+<pre><code>
+# File extention to use (pem/crt)
+rootca_ext: pem
+
+# Directory to place root certificates into
+rootca_directory: /etc/pki/ca-trust/source/anchors
+
+# Command to execute to make OS import CA certificates
+rootca_update_cmd: update-ca-trust
+</pre></code>
+
 
 
 

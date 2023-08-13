@@ -1,6 +1,10 @@
 ---
 
+- name: Load variables based on OS type
+  ansible.builtin.include_tasks: vars.yml
+
 - name: Include install.yml
   ansible.builtin.include_tasks: install.yml
+
 - name: Include test.yml
   ansible.builtin.include_tasks: test.yml
