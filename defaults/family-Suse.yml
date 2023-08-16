@@ -1,0 +1,10 @@
+---
+
+# File extention to use (pem/crt)
+rootca_ext: pem
+
+# Directory to place root certificates into
+rootca_directory: /etc/pki/trust/anchors
+
+# Command to execute to make OS import CA certificates
+rootca_update_cmd: update-ca-certificates
