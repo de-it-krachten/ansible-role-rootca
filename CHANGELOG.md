@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.6.0...v1.6.1) (2023-09-22)
+
+
+### Bug Fixes
+
+* Change loop label to string ([fcb209a](https://github.com/de-it-krachten/ansible-role-rootca/commit/fcb209ab046dc03671847d8c6839aee024462555))
+
 # [1.6.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.5.0...v1.6.0) (2023-08-16)
 
 
