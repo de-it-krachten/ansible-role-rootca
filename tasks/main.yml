@@ -5,6 +5,16 @@
 
 - name: Include install.yml
   ansible.builtin.include_tasks: install.yml
+  when: ansible_os_family != 'Windows'
+
+- name: Include install-windows.yml
+  ansible.builtin.include_tasks: install-windows.yml
+  when: ansible_os_family == 'Windows'
 
 - name: Include test.yml
   ansible.builtin.include_tasks: test.yml
+  when: ansible_os_family != 'Windows'
+
+- name: Include test.yml
+  ansible.builtin.include_tasks: test-windows.yml
+  when: ansible_os_family == 'Windows'

@@ -185,7 +185,7 @@
   volumes:
     - /sys/fs/cgroup:/sys/fs/cgroup:rw
 - name: alpine3
-  ci: false
+  ci: true
   image: docker.io/dropveter/alpine-python3
   privileged: true
   pre_build_image: true
