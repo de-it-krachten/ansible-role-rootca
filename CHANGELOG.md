@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.6.1...v1.7.0) (2023-11-08)
+
+
+### Features
+
+* Implement support for Windows ([0c4057d](https://github.com/de-it-krachten/ansible-role-rootca/commit/0c4057d832e196a450555b70ebe638c159239302))
+
 ## [1.6.1](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.6.0...v1.6.1) (2023-09-22)
 
 
