@@ -13,7 +13,8 @@ Provisions list of rootCA SSL certificates
 None
 
 #### Collections
-- community.general
+- ansible.windows
+- ansible.windows
 
 ## Platforms
 
@@ -31,13 +32,17 @@ Supported platforms
 - AlmaLinux 9
 - SUSE Linux Enterprise 15<sup>1</sup>
 - openSUSE Leap 15
-- Debian 10 (Buster)<sup>1</sup>
 - Debian 11 (Bullseye)
 - Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
 - Fedora 37
 - Fedora 38
+- Alpine 3
+- Windows Server 2012 R2<sup>1</sup>
+- Windows Server 2016<sup>1</sup>
+- Windows Server 2019<sup>1</sup>
+- Windows Server 2022<sup>1</sup>
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -115,6 +120,12 @@ rootca_directory: /etc/pki/ca-trust/source/anchors
 rootca_update_cmd: update-ca-trust
 </pre></code>
 
+### defaults/family-Windows.yml
+<pre><code>
+# File extention to use (pem/crt)
+rootca_ext: pem
+</pre></code>
+
 
 
 
@@ -123,9 +134,11 @@ rootca_update_cmd: update-ca-trust
 <pre><code>
 - name: sample playbook for role 'rootca'
   hosts: all
-  become: "yes"
+  become: 'yes'
   vars:
-    rootca_certificates: ['tests/root1.crt', 'tests/root2.pem']
+    rootca_certificates:
+      - tests/root1.crt
+      - tests/root2.pem
   tasks:
     - name: Include role 'rootca'
       ansible.builtin.include_role:

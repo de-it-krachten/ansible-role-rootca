@@ -1,0 +1,4 @@
+---
+
+# File extention to use (pem/crt)
+rootca_ext: pem

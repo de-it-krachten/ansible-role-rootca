@@ -19,7 +19,6 @@ galaxy_info:
         - all
     - name: Debian
       versions:
-        - buster
         - bullseye
         - bookworm
     - name: Ubuntu
@@ -27,6 +26,12 @@ galaxy_info:
         - focal
         - jammy
     - name: Fedora
+      versions:
+        - all
+    - name: Alpine
+      versions:
+        - all
+    - name: Windows
       versions:
         - all
 dependencies: []

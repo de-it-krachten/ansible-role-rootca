@@ -1,9 +1,36 @@
 ---
 
+# Generic
 generic:
+  role: ansible-role-rootca
+  role_short: rootca
   role_description: |
     Provisions list of rootCA SSL certificates
 
+# Dependencies
+dependencies:
+  collections: 
+    - ansible.windows
+
+# Supported platforms
+platforms:
+  alpine3:
+    ci: true
+    supported: true
+  win2012r2:
+    ci: false
+    supported: true
+  win2016:
+    ci: false
+    supported: true
+  win2019:
+    ci: false
+    supported: true
+  win2022:
+    ci: false
+    supported: true
+
+# Nolecule
 molecule:
   converge:
     vars:

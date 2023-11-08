@@ -1,0 +1,25 @@
+---
+
+- name: Create temporary directory
+  ansible.windows.win_tempfile:
+    state: directory
+  changed_when: false
+  register: __tmpdir
+
+- name: Distribute all root CA certificates
+  ansible.windows.win_copy:
+    src: "{{ item }}"
+    dest: "{{ __tmpdir.path }}/{{ item | basename | regex_replace('\\.(pem | crt)$') }}.{{ rootca_ext }}"
+  changed_when: false
+  loop: "{{ rootca_certificates }}"
+
+- name: Install certificates
+  ansible.windows.win_certificate_store:
+    path: "{{ __tmpdir.path }}/{{ item | basename | regex_replace('\\.(pem | crt)$') }}.{{ rootca_ext }}"
+    file_type: pem
+    key_exportable: false
+    key_storage: machine
+    store_location: LocalMachine
+    store_name: Root
+    state: present
+  loop: "{{ rootca_certificates }}"
