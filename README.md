@@ -36,8 +36,9 @@ Supported platforms
 - Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
-- Fedora 37
-- Fedora 38
+- Ubuntu 24.04 LTS
+- Fedora 39
+- Fedora 40
 - Alpine 3
 - Windows Server 2012 R2<sup>1</sup>
 - Windows Server 2016<sup>1</sup>
@@ -60,6 +61,18 @@ rootca_test_url: ''
 rootca_test_fail: true
 </pre></code>
 
+### defaults/Alpine.yml
+<pre><code>
+# File extention to use (pem/crt)
+rootca_ext: crt
+
+# Directory to place root certificates into
+rootca_directory: /usr/local/share/ca-certificates
+
+# Command to execute to make OS import CA certificates
+rootca_update_cmd: update-ca-certificates
+</pre></code>
+
 ### defaults/family-Debian.yml
 <pre><code>
 # File extention to use (pem/crt)
@@ -67,18 +80,6 @@ rootca_ext: crt
 
 # Directory to place root certificates into
 rootca_directory: /usr/share/ca-certificates/extra
-
-# Command to execute to make OS import CA certificates
-rootca_update_cmd: update-ca-certificates
-</pre></code>
-
-### defaults/family-Suse.yml
-<pre><code>
-# File extention to use (pem/crt)
-rootca_ext: pem
-
-# Directory to place root certificates into
-rootca_directory: /etc/pki/trust/anchors
 
 # Command to execute to make OS import CA certificates
 rootca_update_cmd: update-ca-certificates
@@ -96,16 +97,22 @@ rootca_directory: /etc/pki/ca-trust/source/anchors
 rootca_update_cmd: update-ca-trust
 </pre></code>
 
-### defaults/Alpine.yml
+### defaults/family-Suse.yml
 <pre><code>
 # File extention to use (pem/crt)
-rootca_ext: crt
+rootca_ext: pem
 
 # Directory to place root certificates into
-rootca_directory: /usr/local/share/ca-certificates
+rootca_directory: /etc/pki/trust/anchors
 
 # Command to execute to make OS import CA certificates
 rootca_update_cmd: update-ca-certificates
+</pre></code>
+
+### defaults/family-Windows.yml
+<pre><code>
+# File extention to use (pem/crt)
+rootca_ext: pem
 </pre></code>
 
 ### defaults/Rocky.yml
@@ -118,12 +125,6 @@ rootca_directory: /etc/pki/ca-trust/source/anchors
 
 # Command to execute to make OS import CA certificates
 rootca_update_cmd: update-ca-trust
-</pre></code>
-
-### defaults/family-Windows.yml
-<pre><code>
-# File extention to use (pem/crt)
-rootca_ext: pem
 </pre></code>
 
 
