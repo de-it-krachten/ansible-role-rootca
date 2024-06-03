@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.7.0...v1.8.0) (2024-06-03)
+
+
+### Features
+
+* Add support for Ubuntu 24.04 LTS + Fedora 40 ([172b875](https://github.com/de-it-krachten/ansible-role-rootca/commit/172b8750b8a22152a5f42ad13e6d830af5dee175))
+
 # [1.7.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.6.1...v1.7.0) (2023-11-08)
 
 
