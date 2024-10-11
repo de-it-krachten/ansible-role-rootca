@@ -20,10 +20,8 @@ None
 
 Supported platforms
 
-- Red Hat Enterprise Linux 7<sup>1</sup>
 - Red Hat Enterprise Linux 8<sup>1</sup>
 - Red Hat Enterprise Linux 9<sup>1</sup>
-- CentOS 7
 - RockyLinux 8
 - RockyLinux 9
 - OracleLinux 8
@@ -52,7 +50,7 @@ Note:
 ### defaults/main.yml
 <pre><code>
 # List of root certificate files
-rootca_certificates: []
+# rootca_certificates: []
 
 # Url to be used for testing
 rootca_test_url: ''
