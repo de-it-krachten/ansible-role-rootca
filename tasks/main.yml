@@ -1,5 +1,8 @@
 ---
 
+- name: Test for required variables
+  ansible.builtin.include_tasks: assert.yml
+
 - name: Load variables based on OS type
   ansible.builtin.include_tasks: vars.yml
 

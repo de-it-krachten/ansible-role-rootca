@@ -1,0 +1,6 @@
+---
+
+- name: Ensure all required variables are provided
+  ansible.builtin.assert:
+    that:
+      - rootca_certificates is defined and rootca_certificates | length > 0
