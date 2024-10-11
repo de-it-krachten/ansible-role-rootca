@@ -13,10 +13,16 @@
     group: root
     mode: "0755"
 
+- name: Delete faulty named certificates
+  ansible.builtin.file:
+    path: "{{ rootca_directory }}/{{ item | basename }}.pem.{{ rootca_ext }}"
+    state: absent
+  loop: "{{ rootca_certificates }}"
+
 - name: Distribute all root CA certificates into {{ rootca_directory }}
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ rootca_directory }}/{{ item | basename | regex_replace('\\.(pem | crt)$') }}.{{ rootca_ext }}"
+    dest: "{{ rootca_directory }}/{{ item | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
     owner: root
     group: root
     mode: "0644"
@@ -26,7 +32,7 @@
 - name: Append certificate to /etc/ca-certificates.conf
   ansible.builtin.lineinfile:
     path: /etc/ca-certificates.conf
-    line: "{{ rootca_directory | basename }}/{{ item | basename | regex_replace('\\.(pem | crt)$') }}.{{ rootca_ext }}"
+    line: "{{ rootca_directory | basename }}/{{ item | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
   loop: "{{ rootca_certificates }}"
   register: rootca_update2
   when: ansible_os_family == 'Debian'
