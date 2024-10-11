@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.8.0...v1.8.1) (2024-10-11)
+
+
+### Bug Fixes
+
+* Fix for faulty certificate file naming ([e2abc6e](https://github.com/de-it-krachten/ansible-role-rootca/commit/e2abc6ee9f8dbe98e73cc167ca163d996db2243f))
+
 # [1.8.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.7.0...v1.8.0) (2024-06-03)
 
 
