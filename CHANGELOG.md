@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.8.1...v1.9.0) (2024-12-29)
+
+
+### Features
+
+* Update supported platforms & CI ([493c9a2](https://github.com/de-it-krachten/ansible-role-rootca/commit/493c9a2aa1c67f1f13b8915ab866d496dfead192))
+
 ## [1.8.1](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.8.0...v1.8.1) (2024-10-11)
 
 
