@@ -1,3 +1,14 @@
+# [1.10.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.9.0...v1.10.0) (2025-08-07)
+
+
+### Features
+
+* Add support for AlmaLinux 10 ([3fd322f](https://github.com/de-it-krachten/ansible-role-rootca/commit/3fd322fa40e722d043dc14bb3becdbf9a33d6ffe))
+* Add support for Debian 13 (Trixie) ([42226ab](https://github.com/de-it-krachten/ansible-role-rootca/commit/42226ab5ebf34154d1fdc53bc3beb3999aa86a2a))
+* Add support for OracleLinux 10 ([4f67223](https://github.com/de-it-krachten/ansible-role-rootca/commit/4f6722397d1bdbe0d0dd934fef0ab0a0a3e1c6ca))
+* Add support for Red Hat Enterprise Linux 10 ([245af93](https://github.com/de-it-krachten/ansible-role-rootca/commit/245af939f2197122bc0d12df839c67ef9579e826))
+* Add support for RockyLinux 10 ([36f102a](https://github.com/de-it-krachten/ansible-role-rootca/commit/36f102ad9170897701f387bf90c361225769d375))
+
 # [1.9.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.8.1...v1.9.0) (2024-12-29)
 
 
