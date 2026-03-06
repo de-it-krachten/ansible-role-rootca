@@ -7,28 +7,43 @@ generic:
   role_description: |
     Provisions list of rootCA SSL certificates
 
+# Supported platforms
+platforms:
+  sles15:
+    supported: true
+    ci: false
+  sles16:
+    supported: true
+    ci: false
+  opensuse15:
+    supported: true
+    ci: true
+  opensuse16:
+    supported: true
+    ci: true
+  ubuntu2004:
+    supported: true
+    ci: true
+  alpine3:
+    supported: true
+    ci: true
+  win2012r2:
+    supported: true
+    ci: false
+  win2016:
+    supported: true
+    ci: false
+  win2019:
+    supported: true
+    ci: false
+  win2022:
+    supported: true
+    ci: false
+
 # Dependencies
 dependencies:
   collections: 
     - ansible.windows
-
-# Supported platforms
-platforms:
-  alpine3:
-    ci: true
-    supported: true
-  win2012r2:
-    ci: false
-    supported: true
-  win2016:
-    ci: false
-    supported: true
-  win2019:
-    ci: false
-    supported: true
-  win2022:
-    ci: false
-    supported: true
 
 # Nolecule
 molecule:

@@ -4,6 +4,7 @@
   hosts: all
   become: "yes"
   vars:
+    molecule_driver: "{{ lookup('env', 'MOLECULE_DRIVER_NAME') }}"
     rootca_certificates: ['tests/root1.crt', 'tests/root2.pem']
   tasks:
     - name: Include role 'ansible-role-rootca'
