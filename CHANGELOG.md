@@ -1,3 +1,13 @@
+# [1.11.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.10.0...v1.11.0) (2026-03-15)
+
+
+### Features
+
+* Added support for Fedora 43 ([6a1e91f](https://github.com/de-it-krachten/ansible-role-rootca/commit/6a1e91fd5a07a3c46691e9841412865b0c40f687))
+* Drop support for Fedora 41 ([93d4968](https://github.com/de-it-krachten/ansible-role-rootca/commit/93d4968cb7b875b6e54e66a4c9282bed197776eb))
+* Drop support for openSUSE Leap 15 ([b8fde88](https://github.com/de-it-krachten/ansible-role-rootca/commit/b8fde880a068f88adf7c6e7bd22cb26b6652d062))
+* Drop support for SUSE Linux Enterprise 15 ([623227c](https://github.com/de-it-krachten/ansible-role-rootca/commit/623227c716b03949093c468192a29666c22f7566))
+
 # [1.10.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.9.0...v1.10.0) (2025-08-07)
 
 
