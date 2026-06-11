@@ -24,11 +24,11 @@
     - "defaults/family-{{ ansible_facts.os_family }}.yml"
     - "defaults/family-{{ ansible_facts.os_family }}-{{ ansible_facts.distribution_major_version }}.yml"
     - "defaults/family-{{ ansible_facts.os_family }}-{{ ansible_facts.distribution_version }}.yml"
-    - "defaults/family-{{ ansible_facts.os_family }}-{{ ansible_facts.distribution_release }}.yml"
+    # - "defaults/family-{{ ansible_facts.os_family }}-{{ ansible_facts.distribution_release }}.yml"
     - "defaults/{{ ansible_facts.distribution }}.yml"
     - "defaults/{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_major_version }}.yml"
     - "defaults/{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_version }}.yml"
-    - "defaults/{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_release }}.yml"
+    # - "defaults/{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_release }}.yml"
   loop_control:
     loop_var: var
   when: var in var_list
