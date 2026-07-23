@@ -1,3 +1,19 @@
+# [1.12.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.11.0...v1.12.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* Remove vars from 'distribution_release' ([10b243e](https://github.com/de-it-krachten/ansible-role-rootca/commit/10b243e92f3473826468fa3993b0be242aeb2c01))
+* Standarize vars.yml ([b2fec5d](https://github.com/de-it-krachten/ansible-role-rootca/commit/b2fec5d6a5cb023f2dd9eb54d49912a9a6453467))
+
+
+### Features
+
+* Add support for ansible-core 2.20+ ([84cd74b](https://github.com/de-it-krachten/ansible-role-rootca/commit/84cd74b600498098d2626bbbb3e4c05346bfbda4))
+* Added support for Fedora 44 ([263ba64](https://github.com/de-it-krachten/ansible-role-rootca/commit/263ba6434b75a527e58d55900d4bfaa6db9a56ad))
+* Added support for Ubuntu 26.04 LTS ([1d00257](https://github.com/de-it-krachten/ansible-role-rootca/commit/1d00257835e5edb0e893dc9685df4cad9da5a166))
+* Drop support for Fedora 42 ([3339b3b](https://github.com/de-it-krachten/ansible-role-rootca/commit/3339b3b61bd34f14d79396eaab3605776f87800b))
+
 # [1.11.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.10.0...v1.11.0) (2026-03-15)
 
 
