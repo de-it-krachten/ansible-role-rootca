@@ -35,7 +35,7 @@
     line: "{{ rootca_directory | basename }}/{{ item | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
   loop: "{{ rootca_certificates }}"
   register: rootca_update2
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts.os_family == 'Debian'
 
 - name: Update CA trust
   ansible.builtin.command: "{{ rootca_update_cmd }}"
