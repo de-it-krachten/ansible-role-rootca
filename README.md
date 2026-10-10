@@ -31,7 +31,6 @@ Supported platforms
 - AlmaLinux 8
 - AlmaLinux 9
 - AlmaLinux 10
-- Debian 11 (Bullseye)
 - Debian 12 (Bookworm)
 - Debian 13 (Trixie)
 - Ubuntu 20.04 LTS
@@ -81,7 +80,8 @@ rootca_update_cmd: update-ca-certificates
 rootca_ext: crt
 
 # Directory to place root certificates into
-rootca_directory: /usr/share/ca-certificates/extra
+# rootca_directory: /usr/share/ca-certificates/extra
+rootca_directory: /usr/local/share/ca-certificates/
 
 # Command to execute to make OS import CA certificates
 rootca_update_cmd: update-ca-certificates
