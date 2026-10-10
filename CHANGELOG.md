@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.12.0...v1.13.0) (2026-10-10)
+
+
+### Features
+
+* Drop support for Debian 11 (Bullseye) ([12c1922](https://github.com/de-it-krachten/ansible-role-rootca/commit/12c1922ebfd4c00382441c08456fd3c287c29692))
+
 # [1.12.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.11.0...v1.12.0) (2026-07-23)
 
 
