@@ -8,16 +8,16 @@
 
 - name: Distribute all root CA certificates
   ansible.windows.win_copy:
-    src: "{{ item.src | default(item) }}"
+    src: "{{ item.src }}"
     dest: "{{ dest }}"
   changed_when: false
   register: __copied
-  loop: "{{ rootca_certificates }}"
+  loop: "{{ __rootca_certificates }}"
   loop_control:
     label: "{{ label }}"
   vars:
-    label: "{{ item.src | default(item) | basename | regex_replace('\\.(pem|crt)$') }}"
-    dest: "{{ __tmpdir.path }}\\{{ item.src | default(item) | basename | regex_replace('\\.(pem|crt)$', '') }}.{{ rootca_ext }}"
+    label: "{{ item.src | basename | regex_replace('\\.(pem|crt)$') }}"
+    dest: "{{ __tmpdir.path }}\\{{ item.src | basename | regex_replace('\\.(pem|crt)$', '') }}.{{ rootca_ext }}"
 
 - name: Remove obsolete certificates
   ansible.windows.win_certificate_store:
@@ -26,7 +26,7 @@
     store_location: LocalMachine
     store_name: Root
     state: absent
-  when: (item.item.state | default('present')) == 'absent'
+  when: item.item.state == 'absent'
   loop: "{{ __copied.results }}"
   loop_control:
     label: "{{ item.dest | win_basename | regex_replace('\\.'~rootca_ext, '') }}"
@@ -38,7 +38,7 @@
     store_location: LocalMachine
     store_name: Root
     state: present
-  when: (item.item.state | default('present')) == 'present'
+  when: item.item.state == 'present'
   loop: "{{ __copied.results }}"
   loop_control:
     label: "{{ item.dest | win_basename | regex_replace('\\.'~rootca_ext, '') }}"

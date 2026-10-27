@@ -141,8 +141,19 @@ rootca_update_cmd: update-ca-trust
   vars:
     molecule_driver: '{{ lookup(''env'', ''MOLECULE_DRIVER_NAME'') }}'
     rootca_certificates:
-      - tests/root1.crt
-      - tests/root2.pem
+      - tests/root0.crt
+      - src: tests/root1.crt
+        state: absent
+      - src: tests/root2.pem
+        state: present
+      - src: tests/root3.pem
+        state: present
+        os_family:
+          - Windows
+      - src: tests/root4.crt
+        state: present
+        os_family:
+          - RedHat
   tasks:
     - name: Include role 'rootca'
       ansible.builtin.include_role:
