@@ -8,18 +8,43 @@
 
 - name: Distribute all root CA certificates
   ansible.windows.win_copy:
-    src: "{{ item }}"
-    dest: "{{ __tmpdir.path }}/{{ item | basename | regex_replace('\\.(pem | crt)$') }}.{{ rootca_ext }}"
+    src: "{{ item.src | default(item) }}"
+    dest: "{{ dest }}"
   changed_when: false
+  register: __copied
   loop: "{{ rootca_certificates }}"
+  loop_control:
+    label: "{{ label }}"
+  vars:
+    label: "{{ item.src | default(item) | basename | regex_replace('\\.(pem|crt)$') }}"
+    dest: "{{ __tmpdir.path }}\\{{ item.src | default(item) | basename | regex_replace('\\.(pem|crt)$', '') }}.{{ rootca_ext }}"
+
+- name: Remove obsolete certificates
+  ansible.windows.win_certificate_store:
+    path: "{{ item.dest }}"
+    file_type: pem
+    store_location: LocalMachine
+    store_name: Root
+    state: absent
+  when: (item.item.state | default('present')) == 'absent'
+  loop: "{{ __copied.results }}"
+  loop_control:
+    label: "{{ item.dest | win_basename | regex_replace('\\.'~rootca_ext, '') }}"
 
 - name: Install certificates
   ansible.windows.win_certificate_store:
-    path: "{{ __tmpdir.path }}/{{ item | basename | regex_replace('\\.(pem | crt)$') }}.{{ rootca_ext }}"
+    path: "{{ item.dest }}"
     file_type: pem
-    key_exportable: false
-    key_storage: machine
     store_location: LocalMachine
     store_name: Root
     state: present
-  loop: "{{ rootca_certificates }}"
+  when: (item.item.state | default('present')) == 'present'
+  loop: "{{ __copied.results }}"
+  loop_control:
+    label: "{{ item.dest | win_basename | regex_replace('\\.'~rootca_ext, '') }}"
+
+- name: Remove temporary directory
+  ansible.windows.win_file:
+    path: "{{ __tmpdir.path }}"
+    state: absent
+  changed_when: false
