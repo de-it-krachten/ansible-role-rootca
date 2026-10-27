@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.13.0...v1.13.1) (2026-10-27)
+
+
+### Bug Fixes
+
+* No duplicate certificates imported on Windows ([ec01894](https://github.com/de-it-krachten/ansible-role-rootca/commit/ec018947c2f9f1997e382b2f10473adc970a91e0))
+
 # [1.13.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.12.0...v1.13.0) (2026-10-10)
 
 
