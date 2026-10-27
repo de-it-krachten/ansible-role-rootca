@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.13.1...v1.14.0) (2026-10-27)
+
+
+### Features
+
+* Add support for RootCA removal ([87243e5](https://github.com/de-it-krachten/ansible-role-rootca/commit/87243e5cafaa91867f246c51e69a051f6b54f296))
+
 ## [1.13.1](https://github.com/de-it-krachten/ansible-role-rootca/compare/v1.13.0...v1.13.1) (2026-10-27)
 
 
