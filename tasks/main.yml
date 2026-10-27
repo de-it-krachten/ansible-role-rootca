@@ -3,18 +3,41 @@
 - name: Load variables based on OS type
   ansible.builtin.include_tasks: vars.yml
 
-- name: Include install.yml
-  ansible.builtin.include_tasks: install.yml
+- name: Normalize RootCA entries
+  ansible.builtin.set_fact:
+    __rootca_certificates: >-
+      {{ __rootca_certificates | default([]) + [
+           {'src': item, 'state': 'present'} if item is string
+           else item | combine({'state': item.state | default('present')})
+         ] }}
+  loop: "{{ rootca_certificates }}"
+  when: item.os_family is undefined or ansible_facts['os_family'] in item.os_family
+
+- name: Show RootCA entries
+  ansible.builtin.debug:
+    var: __rootca_certificates
+    verbosity: 1
+
+- name: Install on Linux
   when: ansible_facts.os_family != 'Windows'
+  block:
 
-- name: Include install-windows.yml
-  ansible.builtin.include_tasks: install-windows.yml
+    - name: Include install-linux.yml
+      ansible.builtin.include_tasks:
+        file: install-linux.yml
+
+- name: Install on Windows
   when: ansible_facts.os_family == 'Windows'
+  block:
 
-- name: Include test.yml
-  ansible.builtin.include_tasks: test.yml
-  when: ansible_facts.os_family != 'Windows'
+    - name: Include install-windows.yml
+      ansible.builtin.include_tasks:
+        file: install-windows.yml
 
-- name: Include test.yml
-  ansible.builtin.include_tasks: test-windows.yml
-  when: ansible_facts.os_family == 'Windows'
+    - name: Include test.yml
+      ansible.builtin.include_tasks:
+        file: test.yml
+
+    - name: Include test.yml
+      ansible.builtin.include_tasks:
+        file: test-windows.yml

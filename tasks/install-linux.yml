@@ -1,0 +1,80 @@
+---
+
+- name: Install all public CA certificates
+  ansible.builtin.package:
+    name: ca-certificates
+    state: present
+
+- name: Make sure rootca directory exists
+  ansible.builtin.file:
+    path: "{{ rootca_directory }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Delete faulty named certificates
+  ansible.builtin.file:
+    path: "{{ rootca_directory }}/{{ item.src | basename }}.pem.{{ rootca_ext }}"
+    state: absent
+  loop: "{{ __rootca_certificates }}"
+  loop_control:
+    label: "{{ item.src | basename }}"
+
+- name: Delete obsolete certificates
+  ansible.builtin.file:
+    path: "{{ rootca_directory }}/{{ file }}"
+    state: absent
+  when: item.state == 'absent'
+  register: rootca_update1
+  loop: "{{ __rootca_certificates }}"
+  loop_control:
+    label: "{{ item.src | basename }}"
+  vars:
+    file: "{{ item.src | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
+
+- name: Append certificate to /etc/ca-certificates.conf
+  ansible.builtin.lineinfile:
+    path: /etc/ca-certificates.conf
+    line: "{{ rootca_directory | basename }}/{{ file }}"
+    state: absent
+  loop: "{{ __rootca_certificates }}"
+  register: rootca_update2
+  when:
+    - ansible_facts.os_family == 'Debian'
+    - item.state == 'absent'
+  vars:
+    file: "{{ item.src | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
+
+- name: Distribute all root CA certificates into {{ rootca_directory }}
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ rootca_directory }}/{{ file }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ __rootca_certificates }}"
+  loop_control:
+    label: "{{ item.src | basename }}"
+  register: rootca_update3
+  when: item.state == 'present'
+  vars:
+    file: "{{ item.src | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
+
+- name: Append certificate to /etc/ca-certificates.conf
+  ansible.builtin.lineinfile:
+    path: /etc/ca-certificates.conf
+    line: "{{ rootca_directory | basename }}/{{ file }}"
+  loop: "{{ __rootca_certificates }}"
+  register: rootca_update4
+  when:
+    - ansible_facts.os_family == 'Debian'
+    - item.state == 'present'
+  vars:
+    file: "{{ item.src | basename | regex_replace('\\.(pem|crt)$') }}.{{ rootca_ext }}"
+
+- name: Update CA trust
+  ansible.builtin.command: "{{ rootca_update_cmd }}"
+  register: rootca_update3
+  changed_when: "'0 added' not in rootca_update3.stdout"
+  when: rootca_update1 is changed or rootca_update2 is changed or rootca_update3 is changed or rootca_update4 is changed  # noqa no-handler
